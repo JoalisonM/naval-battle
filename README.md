@@ -27,7 +27,7 @@
   - verificarSeAcertou
   - registrarTiro
 
-## BatalhaNaval
+### BatalhaNaval
 - Atributos:
   - tabuleiro: char[8][8]
 - Métodos:
