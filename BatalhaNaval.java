@@ -15,30 +15,34 @@ public class BatalhaNaval {
     this.tabuleiro = tabuleiro;
   }
 
-  public void adicionaNovaArma(String tipo, int quantidade, char simbolo) {
+  public void adicionaNovaArma(String tipo, char simbolo, int quantidade, int tamanho) {
     Scanner teclado = new Scanner(System.in);
     for (int i = 0; i < quantidade; i++) {
-      System.out.println("\n" + (i + 1) + "˚ " + tipo);
-      System.out.println("linha: ");
-      int linha = teclado.nextInt();
-      System.out.println("coluna: ");
-      int coluna = teclado.nextInt();
+      for (int j = 0; j < tamanho; j++) {
+        System.out.println("\n=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=");
+        System.out.println(tipo + " " + (i + 1) + "/" + quantidade + " " + " - tamanho: " + tamanho);
+        System.out.println("\n" + (j + 1) + "/" + tamanho + " parte da arma");
+        System.out.println("linha: ");
+        int linha = teclado.nextInt();
+        System.out.println("coluna: ");
+        int coluna = teclado.nextInt();
 
-      if (linha <= 7 && coluna <= 7 && tabuleiro[linha][coluna] == Character.MIN_VALUE) {
-        tabuleiro[linha][coluna] = simbolo;
+        if (linha <= 7 && coluna <= 7 && tabuleiro[linha][coluna] == Character.MIN_VALUE) {
+          tabuleiro[linha][coluna] = simbolo;
 
-      } else {
-        System.out.println("Erro ao adicionar arma na posição");
-        i -= 1;
+        } else {
+          System.out.println("Erro ao adicionar arma na posição");
+          i -= 1;
+        }
       }
     }
   }
 
   public void adicionarArmas() {
     System.out.println("Digite a posição das suas armas");
-    adicionaNovaArma("Submarino", 3, 's');
-    adicionaNovaArma("Cruzador", 2, 'c');
-    adicionaNovaArma("Porta-aviões", 1, 'p');
+    adicionaNovaArma("Submarino", 's', 3, 1);
+    adicionaNovaArma("Cruzador", 'c', 2, 2);
+    adicionaNovaArma("Porta-aviões", 'p', 1, 5);
     imprimirTabuleiro();
   }
 
