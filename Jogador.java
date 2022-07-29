@@ -53,4 +53,8 @@ public class Jogador {
 
   public void registrarTiro(int linha, int coluna, Jogador jogadorAdversario) {
   }
+
+  public void  naval(String naval){
+    System.out.println("oi");
+  }
 }
