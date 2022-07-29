@@ -44,13 +44,13 @@ public class Jogador {
 
     jogadorAdversario.verificarSeAcertou(linha, coluna);
 
-    jogadorAdversario.registrarTiro(linha, coluna, jogadorAdversario);
+    jogadorAdversario.registrarTiro(linha, coluna);
   }
 
   public void verificarSeAcertou(int linha, int coluna) {
-    // if () {}
+    System.out.println("Abacate com banana");
   }
 
-  public void registrarTiro(int linha, int coluna, Jogador jogadorAdversario) {
+  public void registrarTiro(int linha, int coluna) {
   }
 }
