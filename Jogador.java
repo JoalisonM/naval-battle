@@ -48,13 +48,8 @@ public class Jogador {
   }
 
   public void verificarSeAcertou(int linha, int coluna) {
-    System.out.println("Abacate com banana");
   }
 
   public void registrarTiro(int linha, int coluna) {
-  }
-
-  public void  naval(String naval){
-    System.out.println("oi");
   }
 }
