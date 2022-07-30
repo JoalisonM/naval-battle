@@ -35,21 +35,35 @@ public class Jogador {
   }
 
   public void atirar(Jogador jogadorAdversario) {
-    System.out.println("Digite a posição que você vai atirar");
-    Scanner teclado = new Scanner(System.in);
-    System.out.print("Digite a linha: ");
-    int linha = teclado.nextInt();
-    System.out.print("\nDigite a coluna");
-    int coluna = teclado.nextInt();
+    for (int i = 0; i < 2; i++) {
+      System.out.println("Digite a posição que você vai atirar");
+      Scanner teclado = new Scanner(System.in);
+      System.out.print("Digite a linha: ");
+      int linha = teclado.nextInt();
+      System.out.print("\nDigite a coluna: ");
+      int coluna = teclado.nextInt();
 
-    jogadorAdversario.verificarSeAcertou(linha, coluna);
+      boolean verificarSeAcertou = jogadorAdversario.verificarSeAcertou(linha, coluna);
 
-    jogadorAdversario.registrarTiro(linha, coluna);
+      jogadorAdversario.registrarTiro(linha, coluna, verificarSeAcertou);
+    }
   }
 
-  public void verificarSeAcertou(int linha, int coluna) {
+  public boolean verificarSeAcertou(int linha, int coluna) {
+    if (jogoDoAdversario.tabuleiro[linha][coluna] != Character.MIN_VALUE) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
-  public void registrarTiro(int linha, int coluna) {
+  public void registrarTiro(int linha, int coluna, boolean verificarSeAcertou) {
+    if (verificarSeAcertou) {
+      jogoDoAdversario.tabuleiro[linha][coluna] = 'O';
+    } else {
+      jogoDoAdversario.tabuleiro[linha][coluna] = 'X';
+    }
+
+    jogoDoAdversario.imprimirTabuleiro();
   }
 }
