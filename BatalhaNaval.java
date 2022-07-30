@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
 public class BatalhaNaval {
+  public static final int lenght = 0;
   public char[][] tabuleiro;
 
   public BatalhaNaval() {

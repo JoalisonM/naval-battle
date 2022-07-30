@@ -6,8 +6,8 @@ public class Main {
     tabuleiroJogador1.adicionarArmas();
     tabuleiroJogador2.adicionarArmas();
 
-    Jogador jogador1 = new Jogador("Euridyce", tabuleiroJogador1, tabuleiroJogador2);
-    Jogador jogador2 = new Jogador("Jooj", tabuleiroJogador2, tabuleiroJogador1);
+    Jogador jogador1 = new Jogador("Euridyce", tabuleiroJogador1, tabuleiroJogador2, null);
+    Jogador jogador2 = new Jogador("Jooj", tabuleiroJogador2, tabuleiroJogador1, null);
 
     jogador1.atirar(jogador2);
   }
