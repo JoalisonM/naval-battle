@@ -3,15 +3,14 @@ import java.util.Scanner;
 public class Jogador {
   private String nome;
   private int acertos;
-  private char[][] tabuleiro;
-  private BatalhaNaval meuJogo, jogoDoAdversario;
+  private BatalhaNaval meuJogo;
+  private char[][] jogoDoAdversario;
 
-  public Jogador(String nome, BatalhaNaval meuJogo, BatalhaNaval jogoDoAdversario) {
+  public Jogador(String nome, BatalhaNaval meuJogo) {
     this.nome = nome;
     this.acertos = 0;
     this.meuJogo = meuJogo;
-    this.tabuleiro = new char[8][8];
-    this.jogoDoAdversario = jogoDoAdversario;
+    this.jogoDoAdversario = new char[8][8];
   }
 
   public String getNome() {
@@ -30,20 +29,12 @@ public class Jogador {
     this.meuJogo = meuJogo;
   }
 
-  public BatalhaNaval getJogoDoAdversario() {
+  public char[][] getJogoDoAdversario() {
     return jogoDoAdversario;
   }
 
-  public void setJogoDoAdversario(BatalhaNaval jogoDoAdversario) {
+  public void setJogoDoAdversario(char[][] jogoDoAdversario) {
     this.jogoDoAdversario = jogoDoAdversario;
-  }
-
-  public char[][] getTabuleiro() {
-    return tabuleiro;
-  }
-
-  public void setTabuleiro(char[][] tabuleiro) {
-    this.tabuleiro = tabuleiro;
   }
 
   public int getAcertos() {
@@ -60,7 +51,7 @@ public class Jogador {
 
   public void atirar(Jogador jogadorAdversario) {
     for (int i = 0; i < 2; i++) {
-      System.out.println("Digite a posição que você vai atirar");
+      System.out.printf("\nDigite a posição que você vai atirar [%s]\n", nome);
       Scanner teclado = new Scanner(System.in);
       System.out.print("Digite a linha: ");
       int linha = teclado.nextInt();
@@ -69,12 +60,12 @@ public class Jogador {
 
       boolean verificarSeAcertou = jogadorAdversario.verificarSeAcertou(linha, coluna);
 
-      jogadorAdversario.registrarTiro(linha, coluna, verificarSeAcertou);
+      registrarTiro(linha, coluna, verificarSeAcertou);
     }
   }
 
   public boolean verificarSeAcertou(int linha, int coluna) {
-    if (jogoDoAdversario.tabuleiro[linha][coluna] != Character.MIN_VALUE) {
+    if (meuJogo.tabuleiro[linha][coluna] != Character.MIN_VALUE) {
       return true;
     } else {
       return false;
@@ -83,21 +74,31 @@ public class Jogador {
 
   public void registrarTiro(int linha, int coluna, boolean verificarSeAcertou) {
     if (verificarSeAcertou) {
-      this.tabuleiro[linha][coluna] = 'O';
+      jogoDoAdversario[linha][coluna] = 'O';
       System.out.println("Parabéns,você acertou na arma!\n");
       this.acertos++;
     } else {
-      this.tabuleiro[linha][coluna] = 'X';
+      jogoDoAdversario[linha][coluna] = 'X';
       System.out.println("Tente na próxima rodada,você atirou na água.\n");
     }
 
     this.imprimirTabuleiro();
   }
 
-  public void trocaDeTiros() {
+  public void trocaDeTiros(Jogador jogadorAdversario) {
+    while (this.getAcertos() < 3 && jogadorAdversario.getAcertos() < 3) {
+      atirar(jogadorAdversario);
+      jogadorAdversario.atirar(jogadorAdversario);
+    }
+    ganhador(jogadorAdversario);
   }
 
-  public void ganhador() {
+  public void ganhador(Jogador jogadorAdversario) {
+    if (this.getAcertos() == 3) {
+      System.out.printf("Fim da partida! Parabéns %s você ganhou!\n", this.nome);
+    } else {
+      System.out.printf("Fim da partida! Parabéns %s você ganhou!\n", jogadorAdversario.getNome());
+    }
   }
 
   public void imprimirTabuleiro() {
@@ -105,10 +106,10 @@ public class Jogador {
     System.out.println("\t1 \t2 \t3 \t4 \t5 \t6 \t7 \t8");
     System.out.println("\t----------------------------------------------------------");
 
-    for (int linha = 0; linha < this.tabuleiro.length; linha++) {
+    for (int linha = 0; linha < this.jogoDoAdversario.length; linha++) {
       System.out.print(linha + 1);
-      for (int coluna = 0; coluna < this.tabuleiro[linha].length; coluna++) {
-        System.out.print("\t" + this.tabuleiro[linha][coluna]);
+      for (int coluna = 0; coluna < this.jogoDoAdversario[linha].length; coluna++) {
+        System.out.print("\t" + this.jogoDoAdversario[linha][coluna]);
       }
       System.out.println();
     }
