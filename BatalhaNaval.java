@@ -23,9 +23,9 @@ public class BatalhaNaval {
         System.out.println("\n=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=");
         System.out.println(tipo + " " + (i + 1) + "/" + quantidade + " " + " - tamanho: " + tamanho);
         System.out.println("\n" + (j + 1) + "/" + tamanho + " parte da arma");
-        System.out.println("linha: ");
+        System.out.print("linha: ");
         int linha = teclado.nextInt();
-        System.out.println("coluna: ");
+        System.out.print("coluna: ");
         int coluna = teclado.nextInt();
 
         if (linha <= 7 && coluna <= 7 && tabuleiro[linha][coluna] == Character.MIN_VALUE) {
@@ -33,7 +33,7 @@ public class BatalhaNaval {
 
         } else {
           System.out.println("Erro ao adicionar arma na posição");
-          i -= 1;
+          j -= 1;
         }
       }
     }

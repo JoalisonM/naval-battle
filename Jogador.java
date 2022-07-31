@@ -2,14 +2,16 @@ import java.util.Scanner;
 
 public class Jogador {
   private String nome;
-  private BatalhaNaval meuJogo, jogoDoAdversario;
+  private int acertos;
   private char[][] tabuleiro;
-  
-  public Jogador(String nome, BatalhaNaval meuJogo, BatalhaNaval jogoDoAdversario, char[][] tabuleiro) {
+  private BatalhaNaval meuJogo, jogoDoAdversario;
+
+  public Jogador(String nome, BatalhaNaval meuJogo, BatalhaNaval jogoDoAdversario) {
     this.nome = nome;
+    this.acertos = 0;
     this.meuJogo = meuJogo;
-    this.jogoDoAdversario = jogoDoAdversario;
     this.tabuleiro = new char[8][8];
+    this.jogoDoAdversario = jogoDoAdversario;
   }
 
   public String getNome() {
@@ -35,12 +37,25 @@ public class Jogador {
   public void setJogoDoAdversario(BatalhaNaval jogoDoAdversario) {
     this.jogoDoAdversario = jogoDoAdversario;
   }
+
   public char[][] getTabuleiro() {
     return tabuleiro;
   }
 
   public void setTabuleiro(char[][] tabuleiro) {
     this.tabuleiro = tabuleiro;
+  }
+
+  public int getAcertos() {
+    return acertos;
+  }
+
+  public void setAcertos(int acertos) {
+    this.acertos = acertos;
+  }
+
+  public void adicionarArmas() {
+    this.meuJogo.adicionarArmas();
   }
 
   public void atirar(Jogador jogadorAdversario) {
@@ -59,25 +74,43 @@ public class Jogador {
   }
 
   public boolean verificarSeAcertou(int linha, int coluna) {
-    if (jogoDoAdversario.tabuleiro[linha][coluna] !=        Character.MIN_VALUE){
+    if (jogoDoAdversario.tabuleiro[linha][coluna] != Character.MIN_VALUE) {
       return true;
     } else {
       return false;
     }
-    
   }
 
   public void registrarTiro(int linha, int coluna, boolean verificarSeAcertou) {
-      int contador=0;
-      if (verificarSeAcertou) {
-          contador++;
-      tabuleiro[linha][coluna] = 'O';
-      System.out.println("Parabéns,você acertou na arma!");
+    if (verificarSeAcertou) {
+      this.tabuleiro[linha][coluna] = 'O';
+      System.out.println("Parabéns,você acertou na arma!\n");
+      this.acertos++;
     } else {
-      tabuleiro[linha][coluna] = 'X';
-      System.out.println("Tente na próxima rodada,você atirou na água.");
+      this.tabuleiro[linha][coluna] = 'X';
+      System.out.println("Tente na próxima rodada,você atirou na água.\n");
     }
 
-    jogoDoAdversario.imprimirTabuleiro();
+    this.imprimirTabuleiro();
+  }
+
+  public void trocaDeTiros() {
+  }
+
+  public void ganhador() {
+  }
+
+  public void imprimirTabuleiro() {
+    System.out.println("-*-*-*-*-*-*-*-*-*-*-*-*-*-*- Tabuleiro -*-*-*-*-*-*-*-*-*-*-*-*-*-*-\n");
+    System.out.println("\t1 \t2 \t3 \t4 \t5 \t6 \t7 \t8");
+    System.out.println("\t----------------------------------------------------------");
+
+    for (int linha = 0; linha < this.tabuleiro.length; linha++) {
+      System.out.print(linha + 1);
+      for (int coluna = 0; coluna < this.tabuleiro[linha].length; coluna++) {
+        System.out.print("\t" + this.tabuleiro[linha][coluna]);
+      }
+      System.out.println();
+    }
   }
 }
