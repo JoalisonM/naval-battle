@@ -3,11 +3,13 @@ public class Main {
     BatalhaNaval tabuleiroJogador1 = new BatalhaNaval();
     BatalhaNaval tabuleiroJogador2 = new BatalhaNaval();
 
-    tabuleiroJogador1.adicionarArmas();
-    tabuleiroJogador2.adicionarArmas();
+    Jogador jogador1 = new Jogador("Euridyce", tabuleiroJogador1, tabuleiroJogador2);
+    Jogador jogador2 = new Jogador("Jooj", tabuleiroJogador2, tabuleiroJogador1);
 
-    Jogador jogador1 = new Jogador("Euridyce", tabuleiroJogador1, tabuleiroJogador2, null);
-    Jogador jogador2 = new Jogador("Jooj", tabuleiroJogador2, tabuleiroJogador1, null);
+    System.out.println("Jogador 1 - Adicionar armas");
+    jogador1.adicionarArmas();
+    System.out.println("\n\nJogador 2 - Adicionar armas");
+    jogador2.adicionarArmas();
 
     jogador1.atirar(jogador2);
   }
