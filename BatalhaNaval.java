@@ -1,7 +1,6 @@
 import java.util.Scanner;
 
 public class BatalhaNaval {
-  public static final int lenght = 0;
   public char[][] tabuleiro;
 
   public BatalhaNaval() {
@@ -16,24 +15,28 @@ public class BatalhaNaval {
     this.tabuleiro = tabuleiro;
   }
 
+  public boolean verificarSePosicaoTemArma(int linha, int coluna) {
+    if (linha <= 7 && coluna <= 7 && tabuleiro[linha][coluna] == Character.MIN_VALUE) {
+      return true;
+    } else
+      return false;
+  }
+
   public void adicionaNovaArma(String tipo, char simbolo, int quantidade, int tamanho) {
     Scanner teclado = new Scanner(System.in);
     for (int i = 0; i < quantidade; i++) {
-      for (int j = 0; j < tamanho; j++) {
-        System.out.println("\n=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=");
-        System.out.println(tipo + " " + (i + 1) + "/" + quantidade + " " + " - tamanho: " + tamanho);
-        System.out.println("\n" + (j + 1) + "/" + tamanho + " parte da arma");
-        System.out.print("linha: ");
-        int linha = teclado.nextInt();
-        System.out.print("coluna: ");
-        int coluna = teclado.nextInt();
+      System.out.println("\n=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=");
+      System.out.println(tipo + " " + (i + 1) + "/" + quantidade + " " + " - tamanho: " + tamanho);
+      System.out.print("linha: ");
+      int linha = teclado.nextInt();
+      System.out.print("coluna: ");
+      int colunaInicial = teclado.nextInt();
 
-        if (linha <= 7 && coluna <= 7 && tabuleiro[linha][coluna] == Character.MIN_VALUE) {
+      for (int coluna = colunaInicial; coluna <= colunaInicial + (tamanho - 1); coluna++) {
+        if (verificarSePosicaoTemArma(linha, colunaInicial)) {
           tabuleiro[linha][coluna] = simbolo;
-
         } else {
           System.out.println("Erro ao adicionar arma na posição");
-          j -= 1;
         }
       }
     }
@@ -43,7 +46,7 @@ public class BatalhaNaval {
     System.out.println("Digite a posição das suas armas");
     adicionaNovaArma("Submarino", 's', 3, 1);
     // adicionaNovaArma("Cruzador", 'c', 2, 2);
-    // adicionaNovaArma("Porta-aviões", 'p', 1, 5);
+    adicionaNovaArma("Porta-aviões", 'p', 1, 5);
     imprimirTabuleiro();
   }
 
