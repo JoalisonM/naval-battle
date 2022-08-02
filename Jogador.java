@@ -50,17 +50,23 @@ public class Jogador {
   }
 
   public void atirar(Jogador jogadorAdversario) {
-    for (int i = 0; i < 2; i++) {
+    int i = 0;
+    while (i < 2) {
+      if (this.acertos == 3) {
+        break;
+      }
+
       System.out.printf("\nDigite a posição que você vai atirar [%s]\n", nome);
       Scanner teclado = new Scanner(System.in);
       System.out.print("Digite a linha: ");
       int linha = teclado.nextInt();
-      System.out.print("\nDigite a coluna: ");
+      System.out.print("Digite a coluna: ");
       int coluna = teclado.nextInt();
 
       boolean verificarSeAcertou = jogadorAdversario.verificarSeAcertou(linha, coluna);
 
       registrarTiro(linha, coluna, verificarSeAcertou);
+      i++;
     }
   }
 
@@ -83,22 +89,6 @@ public class Jogador {
     }
 
     this.imprimirTabuleiro();
-  }
-
-  public void trocaDeTiros(Jogador jogadorAdversario) {
-    while (this.getAcertos() < 3 && jogadorAdversario.getAcertos() < 3) {
-      atirar(jogadorAdversario);
-      jogadorAdversario.atirar(jogadorAdversario);
-    }
-    ganhador(jogadorAdversario);
-  }
-
-  public void ganhador(Jogador jogadorAdversario) {
-    if (this.getAcertos() == 3) {
-      System.out.printf("Fim da partida! Parabéns %s você ganhou!\n", this.nome);
-    } else {
-      System.out.printf("Fim da partida! Parabéns %s você ganhou!\n", jogadorAdversario.getNome());
-    }
   }
 
   public void imprimirTabuleiro() {
