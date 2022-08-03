@@ -32,11 +32,19 @@ public class BatalhaNaval {
       System.out.print("coluna: ");
       int colunaInicial = teclado.nextInt();
 
+      if (tipo.equals("Porta-aviões")) {
+        if (colunaInicial > 3) {
+          System.out.println("Erro ao adicionar porta aviões, tamanho insuficiente do tabuleiro.");
+          i--;
+        }
+      }
+
       for (int coluna = colunaInicial; coluna <= colunaInicial + (tamanho - 1); coluna++) {
-        if (verificarSePosicaoTemArma(linha, colunaInicial)) {
+        if (verificarSePosicaoTemArma(linha, coluna)) {
           tabuleiro[linha][coluna] = simbolo;
         } else {
           System.out.println("Erro ao adicionar arma na posição");
+          i--;
         }
       }
     }
@@ -44,7 +52,7 @@ public class BatalhaNaval {
 
   public void adicionarArmas() {
     System.out.println("Digite a posição das suas armas");
-    adicionaNovaArma("Submarino", 's', 3, 1);
+    // adicionaNovaArma("Submarino", 's', 3, 1);
     // adicionaNovaArma("Cruzador", 'c', 2, 2);
     adicionaNovaArma("Porta-aviões", 'p', 1, 5);
     imprimirTabuleiro();
