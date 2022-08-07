@@ -106,8 +106,8 @@ public class BatalhaNaval {
   public void adicionarArmas() {
     System.out.println("Digite a posição das suas armas");
     adicionaNovaArma("Submarino", 's', 3, 1);
-    // adicionaNovaArma("Cruzador", 'c', 2, 2);
-    // adicionaNovaArma("Porta-aviões", 'p', 1, 5);
+    adicionaNovaArma("Cruzador", 'c', 2, 2);
+    adicionaNovaArma("Porta-aviões", 'p', 1, 5);
     imprimirTabuleiro();
   }
 

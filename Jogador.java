@@ -50,19 +50,25 @@ public class Jogador {
   }
 
   public void atirar(Jogador jogadorAdversario) {
-    for (int i = 0; i < 2; i++) {
+    int i = 0;
+    while (i < 2) {
+      if (this.acertos == 12) {
+        break;
+      }
+
       System.out.printf("\n[%s] acertou [%d/12]\n", nome, acertos);
       System.out.printf("Digite a posição que você vai atirar [%s]\n", nome);
       Scanner teclado = new Scanner(System.in);
       System.out.print("Digite a linha: ");
       int linha = teclado.nextInt();
-      System.out.print("\nDigite a coluna: ");
+      System.out.print("Digite a coluna: ");
       int coluna = teclado.nextInt();
 
       if (linha <= 7 && coluna <= 7) {
         boolean verificarSeAcertou = jogadorAdversario.verificarSeAcertou(linha, coluna);
 
         registrarTiro(linha, coluna, verificarSeAcertou);
+        i++;
       } else {
         System.out.println("Erro ao atirar, tente novamente!");
         i--;
@@ -79,13 +85,17 @@ public class Jogador {
   }
 
   public void registrarTiro(int linha, int coluna, boolean verificarSeAcertou) {
-    if (verificarSeAcertou) {
-      jogoDoAdversario[linha][coluna] = 'O';
-      System.out.println("Parabéns,você acertou na arma!\n");
-      this.acertos++;
+    if (this.jogoDoAdversario[linha][coluna] == Character.MIN_VALUE) {
+      if (verificarSeAcertou) {
+        this.jogoDoAdversario[linha][coluna] = 'O';
+        System.out.println("Parabéns,você acertou na arma!\n");
+        setAcertos(this.acertos + 1);
+      } else {
+        this.jogoDoAdversario[linha][coluna] = 'X';
+        System.out.println("Tente na próxima rodada,você atirou na água.\n");
+      }
     } else {
-      jogoDoAdversario[linha][coluna] = 'X';
-      System.out.println("Tente na próxima rodada,você atirou na água.\n");
+      System.out.println("Você já acertou um tiro nessa posição.\n");
     }
 
     this.imprimirTabuleiro();
