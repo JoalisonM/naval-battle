@@ -4,7 +4,7 @@ public class Jogador {
   private String nome;
   private int acertos;
   private BatalhaNaval meuJogo;
-  private char[][] jogoDoAdversario;
+  private char[][] jogoDoAdversario; // criador: o Jogador está sendo responsável por criar o jogoDoAdversário
 
   public Jogador(String nome, BatalhaNaval meuJogo) {
     this.nome = nome;
@@ -45,10 +45,22 @@ public class Jogador {
     this.acertos = acertos;
   }
 
+  // High Cohesion: A classe Jogador tem a responsabilidade de controlar as
+  // jogadas de um jogador em um jogo de batalha naval. Assim, devemos manter
+  // apenas os métodos relacionados a essa responsabilidade na classe Jogador.
+  // Para isso, podemos mover o método adicionarArmas() para a classe
+  // BatalhaNaval.
   public void adicionarArmas() {
     this.meuJogo.adicionarArmas();
   }
 
+  // Controlador (Controller): O padrão Controlador (ou Controller) diz que uma
+  // classe deve ser
+  // responsável por coordenar ações de outras classes. No código fornecido, a
+  // classe Jogador coordena
+  // a ação de atirar e registrar tiros. Isso não é uma boa prática, pois a classe
+  // Jogador já tem a
+  // responsabilidade de representar um jogador
   public void atirar(Jogador jogadorAdversario) {
     int i = 0;
     while (i < 2) {
