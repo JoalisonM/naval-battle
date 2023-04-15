@@ -8,9 +8,7 @@
 package refatorado;
 
 public interface TabuleiroController {
-  public abstract void setSimboloArma(char simboloArma);
-
-  public abstract void adicionarArmas(char simboloArma);
+  public abstract void adicionarArma(int linha, int colunaInicial, int tamanho, char simboloArma);
 
   public abstract boolean verificarSeAcertouArma(int linha, int coluna);
 

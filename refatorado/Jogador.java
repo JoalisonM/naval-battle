@@ -36,27 +36,17 @@ public class Jogador {
     this.acertos = acertos;
   }
 
-  public Tabuleiro getMeuJogo() {
+  public Tabuleiro getTabuleiro() {
     return tabuleiro;
   }
 
-  public void setMeuJogo(Tabuleiro tabuleiro) {
+  public void setTabuleiro(Tabuleiro tabuleiro) {
     this.tabuleiro = tabuleiro;
   }
 
-  public void adicionarArmasTabuleiro() {
-    tabuleiro.adicionarArmas('s');
-    tabuleiro.adicionarArmas('c');
-    tabuleiro.adicionarArmas('p');
-  }
-
-  public void atirar(Jogador JogadorAdversario) {
-    int i = 0;
-    while (i < 2) {
-      if (this.acertos == 12) {
-        break;
-      }
-
+  public void atirar(Jogador jogadorAdversario) {
+    int tentativas = 0;
+    while (tentativas < 2 && acertos < 12) {
       System.out.printf("\n[%s] acertou [%d/12]\n", nome, acertos);
       System.out.printf("Digite a posição que você vai atirar [%s]\n", nome);
       Scanner teclado = new Scanner(System.in);
@@ -66,13 +56,13 @@ public class Jogador {
       int coluna = teclado.nextInt();
 
       if (linha <= 7 && coluna <= 7) {
-        boolean verificarSeAcertou = JogadorAdversario.tabuleiro.verificarSeAcertouArma(linha, coluna);
+        boolean verificarSeAcertou = jogadorAdversario.tabuleiro.verificarSeAcertouArma(linha, coluna);
 
-        registrarTiro(linha, coluna, verificarSeAcertou, JogadorAdversario.tabuleiro.getTabuleiro());
-        i++;
+        registrarTiro(linha, coluna, verificarSeAcertou, jogadorAdversario.tabuleiro.getTabuleiro());
+        tentativas++;
       } else {
         System.out.println("Erro ao atirar, tente novamente!");
-        i--;
+        tentativas--;
       }
     }
   }
