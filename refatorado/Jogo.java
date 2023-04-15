@@ -1,3 +1,8 @@
+//1- A classe Jogo é um controlador, controlando a interação entre os jogadores e gerenciando a lógica do jogo.
+
+//2-Polimorfismo: A classe Jogo utiliza os métodos polimórficos 'atirar()' e 'registrarTiro()' da classe 'Jogador'
+// para controlar a troca de tiros entre os jogadores.
+
 package refatorado;
 
 public class Jogo {

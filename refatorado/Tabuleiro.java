@@ -1,3 +1,10 @@
+//1-Information expert: a classe Tabuleiro possui informações sobre o próprio tabuleiro e sobre as armas, 
+//sendo responsável por adicionar as armas e verificar se uma posição tem uma arma ou não.
+
+//2-Creator : a classe Tabuleiro cria instâncias da classe Arma ao definir o símbolo da arma.
+
+//3-Low coupling: esta classe não depende diretamente de outras, pois cria instâncias da classe Arma e implementa a interface TabuleiroController.
+
 package refatorado;
 
 import java.util.Scanner;

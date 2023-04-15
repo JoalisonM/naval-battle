@@ -1,3 +1,10 @@
+//1-Information expert: a classe Jogador é responsável por conhecer seu próprio nome, a quantidade de acertos e o tabuleiro, 
+//sendo a especialista em gerenciar informações relacionadas ao jogador.
+
+//2-A classe Jogador atua como um controlador, possuindo métodos que gerenciam as interações do jogador com o jogo, como: adicionar armas e atirar.
+
+//3-a classe Jogador possui baixo acoplamento, é responsável apenas pelas informações relacionadas ao jogador e não depende diretamente de outras classes.
+
 package refatorado;
 
 import java.util.Scanner;
